@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.skill_factory.unit9.adapter.ProductAdapter
+import com.skill_factory.unit9.databinding.ActivityMainBinding
 import com.skill_factory.unit9.decoration.MyItemDecoration
 import com.skill_factory.unit9.model.Ad
 import com.skill_factory.unit9.model.Item
@@ -12,12 +13,15 @@ import com.skill_factory.unit9.model.Product
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+//        val recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         val adapter = ProductAdapter()
+        binding.recyclerView.adapter = adapter
         fun getItems(): ArrayList<Item> {
             return arrayListOf(
                 Product(
@@ -97,12 +101,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         adapter.items = getItems()
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        recyclerView.addItemDecoration(dividerItemDecoration)
+        binding.recyclerView.addItemDecoration(dividerItemDecoration)
 
         val myItemDecoration = MyItemDecoration(this);
-        recyclerView.addItemDecoration(myItemDecoration)
+        binding.recyclerView.addItemDecoration(myItemDecoration)
     }
 }
