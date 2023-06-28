@@ -3,8 +3,10 @@ package com.skill_factory.unit9
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.skill_factory.unit9.adapter.ProductAdapter
+import com.skill_factory.unit9.adapter.SimpleItemTouchHelperCallback
 import com.skill_factory.unit9.databinding.ActivityMainBinding
 import com.skill_factory.unit9.decoration.MyItemDecoration
 import com.skill_factory.unit9.model.Ad
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        val recyclerView: RecyclerView = binding.recyclerView
         val adapter = ProductAdapter()
         fun getItems(): ArrayList<Item> {
             return arrayListOf(
@@ -28,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                     "Apple",
                     "Juicy Apple fruit, which is eaten fresh, serves as a raw material in cooking and for making drinks."
                 ),
-                Ad("Акция", "Скидка на бананы 15%"),
+                Ad("Акция", "Скидка на бананы 15%",15),
                 Product(
                     1,
                     R.drawable.ic_banana,
@@ -53,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                     "Strawberry",
                     "A perennial herbaceous plant 5-20 cm high, with a thick brown rhizome. \"Mustache\" is short. The stem is thin."
                 ),
-                Ad("Акция", "Товар недели - Груши"),
+                Ad("Акция", "Товар недели - Груши", 16),
                 Product(
                     5,
                     R.drawable.ic_pear,
@@ -83,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                     "Orange",
                     "Orange juice is widely used as a drink in restaurants and cafes."
                 ),
-                Ad("Акция", "Апельсины очень полезны"),
+                Ad("Акция", "Апельсины очень полезны", 17),
                 Product(
                     10,
                     R.drawable.ic_orange,
@@ -106,5 +108,7 @@ class MainActivity : AppCompatActivity() {
 
         val myItemDecoration = MyItemDecoration(this);
         recyclerView.addItemDecoration(myItemDecoration)
+        val itemTouchHelper = ItemTouchHelper(SimpleItemTouchHelperCallback(adapter))
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 }
