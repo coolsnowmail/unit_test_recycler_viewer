@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.skill_factory.unit9"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -21,6 +21,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    viewBinding {
+        enabled = true
     }
 
 }

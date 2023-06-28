@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.skill_factory.unit9.adapter.ProductAdapter
+import com.skill_factory.unit9.databinding.ActivityMainBinding
 import com.skill_factory.unit9.decoration.MyItemDecoration
 import com.skill_factory.unit9.model.Ad
 import com.skill_factory.unit9.model.Item
@@ -12,10 +13,11 @@ import com.skill_factory.unit9.model.Product
 
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val recyclerView: RecyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         val adapter = ProductAdapter()
         fun getItems(): ArrayList<Item> {
